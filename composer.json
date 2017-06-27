@@ -1,6 +1,6 @@
 {
   "name": "wtg/theme",
-  "description": "Theme engine for wtg/framework",
+  "description": "Theme engine for wtg/framework.",
   "keywords": ["framework", "wtg", "laravel", "webshop"],
   "license": "MIT",
   "homepage": "https://wiringa.nl",
