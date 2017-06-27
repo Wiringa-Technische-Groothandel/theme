@@ -1,0 +1,38 @@
+{
+  "name": "wtg/theme",
+  "description": "Theme engine for wtg/framework",
+  "keywords": ["framework", "wtg", "laravel", "webshop"],
+  "license": "MIT",
+  "homepage": "https://wiringa.nl",
+  "authors": [
+    {
+      "name": "Thomas Wiringa",
+      "email": "thomas.wiringa@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "WTG\\Theme": "./"
+    }
+  },
+  "require": {
+    "php": ">=7.0",
+    "illuminate/console": "5.5.*",
+    "illuminate/support": "5.5.*",
+    "illuminate/filesystem": "5.5.*"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    },
+    "laravel": {
+      "providers": [
+        "WTG\\Theme\\ThemeServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev"
+}
