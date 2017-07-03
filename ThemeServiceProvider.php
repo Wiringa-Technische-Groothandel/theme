@@ -26,4 +26,14 @@ class ThemeServiceProvider extends ServiceProvider
             ]);
         }
     }
+
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->app->bind(\WTG\Theme\Contracts\ThemeScanner::class, ThemeScanner::class);
+    }
 }

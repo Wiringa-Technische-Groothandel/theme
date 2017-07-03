@@ -1,7 +1,6 @@
 <?php
 
 namespace WTG\Theme;
-use Throwable;
 
 /**
  * Class InvalidMetadataException
@@ -16,9 +15,9 @@ class InvalidMetadataException extends ThemeException
      *
      * @param  string  $metadataPath
      * @param  int  $code
-     * @param  Throwable|null  $previous
+     * @param  \Throwable|null  $previous
      */
-    public function __construct($metadataPath, $code = 0, Throwable $previous = null)
+    public function __construct(string $metadataPath, $code = 0, \Throwable $previous = null)
     {
         $message = "Invalid theme metadata at '$metadataPath'";
 

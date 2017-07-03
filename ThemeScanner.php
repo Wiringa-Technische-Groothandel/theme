@@ -2,8 +2,9 @@
 
 namespace WTG\Theme;
 
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
+use Illuminate\Filesystem\Filesystem;
+use WTG\Theme\Contracts\ThemeScanner as ScannerContract;
 
 /**
  * Theme scanner.
@@ -11,7 +12,7 @@ use Illuminate\Support\Collection;
  * @package     WTG\Theme
  * @author      Thomas Wiringa  <thomas.wiringa@gmail.com>
  */
-class ThemeScanner
+class ThemeScanner implements ScannerContract
 {
     /**
      * @var Filesystem
@@ -52,7 +53,7 @@ class ThemeScanner
      *
      * @return Collection
      */
-    public function scan()
+    public function scan(): Collection
     {
         $themes = [];
 
@@ -66,9 +67,11 @@ class ThemeScanner
                     continue;
                 }
 
-                $themes[] = $this->normalizeMetadata(
+                $metadata = $this->normalizeMetadata(
                     $this->parseMetadata($metaPath)
                 );
+
+                $themes[] = new Metadata($metadata, $directory);
             }
         }
 
@@ -82,7 +85,7 @@ class ThemeScanner
      * @return array
      * @throws InvalidMetadataException
      */
-    public function parseMetadata($path)
+    public function parseMetadata(string $path): array
     {
         $meta = json_decode($this->fs->get($path), true);
 
@@ -94,12 +97,12 @@ class ThemeScanner
     }
 
     /**
-     * Normalize the metadata into something useful
+     * Normalize the metadata into something useful.
      *
-     * @param $meta
+     * @param  array  $meta
      * @return array
      */
-    public function normalizeMetadata($meta)
+    public function normalizeMetadata(array $meta): array
     {
         return [
             'name'          => $meta['name'],
